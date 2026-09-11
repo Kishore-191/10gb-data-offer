@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#7B0F1A">
+<title>🎉 Congratulations! You have been selected</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   PRANK PAGE — two deliberate visual acts.
+   Act 1 (stages 1-5): maroon + gold, over-decorated, urgent.
+     It is meant to look like the thing it is imitating.
+   Act 2 (stage 6): clean white + green. The joke lands the
+     moment the aesthetic changes.
+   NOTHING here takes payment. There is no gateway, no form,
+   no card field, no UPI intent. The pay button advances a
+   counter and nothing else.
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow-x:hidden}
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:#5C0A14;color:#fff;
+  display:flex;align-items:flex-start;justify-content:center;
+  min-height:100dvh;padding:0;
+}
+#app{width:100%;max-width:480px;min-height:100dvh;position:relative;overflow:hidden}
+button{font:inherit;color:inherit;border:none;background:none;cursor:pointer}
+:focus-visible{outline:3px solid #FFD84D;outline-offset:2px}
+
+/* ---------- Act 1 ---------- */
+.scam{
+  min-height:100dvh;padding:0 0 40px;
+  background:
+    radial-gradient(circle at 50% 0%,#9E1526 0%,#5C0A14 55%,#3A050C 100%);
+  position:relative;
+}
+.tinsel{
+  height:8px;
+  background:repeating-linear-gradient(90deg,#FFD84D 0 14px,#E8342F 14px 28px);
+}
+.marquee{
+  background:#000;color:#FFD84D;font-size:12px;font-weight:700;
+  padding:7px 0;overflow:hidden;white-space:nowrap;
+}
+.marquee span{display:inline-block;padding-left:100%;animation:slide 18s linear infinite}
+@keyframes slide{to{transform:translateX(-100%)}}
+
+.hero{padding:22px 18px 0;text-align:center}
+.trophy{font-size:66px;line-height:1;animation:bob 1.6s ease-in-out infinite;display:inline-block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-9px) rotate(4deg)}}
+
+.headline{
+  font-size:30px;font-weight:900;line-height:1.12;margin:10px 0 6px;
+  color:#FFD84D;text-shadow:0 2px 0 #7B0F1A,0 4px 14px rgba(0,0,0,.5);
+  letter-spacing:-.5px;
+}
+.headline em{font-style:normal;color:#fff;display:block;font-size:17px;font-weight:700;margin-top:6px}
+
+.prize{
+  background:linear-gradient(180deg,#FFE477,#F2B705);
+  color:#5C0A14;border-radius:18px;padding:16px;margin:16px 0;
+  box-shadow:0 8px 0 #B8860B,0 14px 28px rgba(0,0,0,.45);
+  animation:throb 1.1s ease-in-out infinite;
+}
+@keyframes throb{0%,100%{transform:scale(1)}50%{transform:scale(1.028)}}
+.prize .amt{font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1}
+.prize .cap{font-size:12px;font-weight:800;letter-spacing:1.5px;opacity:.75}
+
+.timer{
+  display:inline-flex;align-items:center;gap:7px;background:rgba(0,0,0,.45);
+  border:1.5px solid #E8342F;border-radius:999px;padding:7px 15px;
+  font-size:13px;font-weight:800;color:#FF8A8A;
+}
+.timer b{color:#fff;font-variant-numeric:tabular-nums;min-width:44px;display:inline-block}
+
+.ticker{
+  margin:16px 12px 0;background:rgba(0,0,0,.35);border-radius:12px;
+  padding:9px 12px;font-size:12px;height:34px;overflow:hidden;position:relative;
+}
+.ticker div{animation:roll .5s ease}
+@keyframes roll{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+.dot{width:7px;height:7px;border-radius:50%;background:#3CD07A;display:inline-block;
+  margin-right:6px;animation:blink 1.1s infinite}
+@keyframes blink{50%{opacity:.25}}
+
+.cta{
+  display:block;width:calc(100% - 36px);margin:20px auto 0;
+  background:linear-gradient(180deg,#3CD07A,#1FA457);color:#062B17;
+  font-size:19px;font-weight:900;padding:17px;border-radius:14px;
+  box-shadow:0 6px 0 #14713C,0 12px 26px rgba(0,0,0,.4);
+  animation:throb 1.3s ease-in-out infinite;letter-spacing:-.2px;
+}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 #14713C}
+.cta.sm{font-size:16px;padding:15px}
+
+.fineprint{
+  font-size:9px;color:rgba(255,255,255,.34);padding:18px 22px 0;
+  line-height:1.5;text-align:center;
+}
+
+/* card used by quiz / spin / payment stages */
+.panel{margin:16px 14px 0;background:rgba(0,0,0,.34);border:1.5px solid rgba(255,216,77,.28);
+  border-radius:16px;padding:16px}
+.panel h2{font-size:17px;font-weight:800;color:#FFD84D;margin-bottom:4px}
+
+.qbar{display:flex;gap:5px;margin:0 14px 4px;padding-top:16px}
+.qbar i{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.18)}
+.qbar i.on{background:#FFD84D}
+
+.qtext{font-size:21px;font-weight:800;line-height:1.3;margin:14px 0 16px;padding:0 2px}
+.opt{
+  display:block;width:100%;text-align:left;background:rgba(255,255,255,.09);
+  border:1.5px solid rgba(255,255,255,.2);border-radius:12px;
+  padding:15px 16px;margin-bottom:9px;font-size:16px;font-weight:600;
+  transition:transform .12s,background .16s,border-color .16s;
+}
+.opt:active{transform:scale(.98)}
+.opt.right{background:rgba(60,208,122,.24);border-color:#3CD07A}
+.opt.wrong{background:rgba(232,52,47,.22);border-color:#E8342F;opacity:.6}
+.verdict{font-size:15px;font-weight:800;color:#3CD07A;text-align:center;padding:10px 0 2px}
+
+/* spin wheel */
+.wheelwrap{position:relative;width:270px;height:270px;margin:6px auto 0}
+.pointer{
+  position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+  width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;
+  border-top:26px solid #FFD84D;z-index:3;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6));
+}
+#wheel{
+  width:270px;height:270px;border-radius:50%;
+  border:8px solid #FFD84D;box-shadow:0 0 0 4px #B8860B,0 14px 34px rgba(0,0,0,.55);
+  transition:transform 4.6s cubic-bezier(.15,.9,.15,1);
+}
+.hub{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:56px;height:56px;border-radius:50%;background:#FFD84D;color:#5C0A14;
+  display:grid;place-items:center;font-weight:900;font-size:13px;z-index:2;
+  box-shadow:0 3px 10px rgba(0,0,0,.5);
+}
+
+/* payment stage — deliberately looks the part, does nothing */
+.payhdr{display:flex;align-items:center;gap:9px;padding:14px 16px;background:#fff;color:#111}
+.payhdr .lock{color:#1FA457;font-size:15px}
+.payhdr b{font-size:14px}
+.payhdr span{font-size:11px;color:#666;margin-left:auto}
+.paybody{background:#F3F3F6;color:#111;padding:16px;min-height:56vh}
+.payrow{display:flex;justify-content:space-between;padding:11px 0;font-size:14px}
+.payrow.total{border-top:1.5px dashed #CFCFDA;margin-top:6px;padding-top:13px;font-weight:800;font-size:17px}
+.paycard{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.09)}
+.method{display:flex;align-items:center;gap:11px;padding:13px;background:#fff;
+  border:2px solid #E3E3EC;border-radius:12px;margin-bottom:9px;font-size:14px;font-weight:600;color:#111;width:100%;text-align:left}
+.method[aria-pressed="true"]{border-color:#1FA457;background:#F0FBF5}
+.method .ic{width:34px;height:34px;border-radius:8px;background:#EEEBFD;display:grid;place-items:center;font-size:16px}
+.paybtn{
+  width:100%;background:#1FA457;color:#fff;font-size:17px;font-weight:800;
+  padding:16px;border-radius:12px;margin-top:14px;
+}
+.paybtn:active{opacity:.85}
+.paynote{font-size:11px;color:#777;text-align:center;margin-top:10px;line-height:1.5}
+
+/* processing */
+.proc{min-height:100dvh;display:grid;place-items:center;text-align:center;padding:30px}
+.ring{width:64px;height:64px;border-radius:50%;border:5px solid rgba(255,255,255,.18);
+  border-top-color:#FFD84D;margin:0 auto 20px;animation:spin .85s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.procmsg{font-size:16px;font-weight:600;min-height:24px}
+
+/* ---------- Act 2: the reveal ---------- */
+.reveal{
+  min-height:100dvh;background:#FFFFFF;color:#15161F;padding:30px 20px 44px;
+  animation:flip .45s ease;
+}
+@keyframes flip{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.reveal .big{font-size:80px;text-align:center;line-height:1;animation:pop .6s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.2) rotate(-25deg);opacity:0}100%{transform:none;opacity:1}}
+.reveal h1{font-size:33px;font-weight:900;text-align:center;margin:14px 0 8px;letter-spacing:-1px;line-height:1.1}
+.reveal .sub{text-align:center;font-size:17px;color:#5A5C6E;margin-bottom:24px;line-height:1.5}
+.reveal .sub b{color:#15161F}
+
+.safe{
+  background:#EAF8F0;border:2px solid #1FA457;border-radius:14px;
+  padding:15px;margin-bottom:22px;text-align:center;
+}
+.safe .t{font-size:17px;font-weight:800;color:#12703C;margin-bottom:4px}
+.safe .d{font-size:14px;color:#2C6B48;line-height:1.5}
+
+.scorecard{background:#F5F5F9;border-radius:14px;padding:6px 16px;margin-bottom:22px}
+.scorecard .sr{display:flex;justify-content:space-between;align-items:center;
+  padding:12px 0;border-bottom:1px solid #E4E4EE;font-size:14px}
+.scorecard .sr:last-child{border-bottom:none}
+.scorecard .sr b{font-weight:800;font-variant-numeric:tabular-nums}
+.scorecard .sr .g{color:#1FA457}
+
+.reveal h3{font-size:16px;font-weight:800;margin:0 0 10px}
+.tells{list-style:none;margin-bottom:24px}
+.tells li{
+  display:flex;gap:11px;padding:11px 0;border-bottom:1px solid #EDEDF3;
+  font-size:14px;line-height:1.5;color:#3E4052;
+}
+.tells li:last-child{border-bottom:none}
+.tells .n{
+  flex:0 0 24px;height:24px;border-radius:50%;background:#FFE9E9;color:#D8302C;
+  display:grid;place-items:center;font-size:12px;font-weight:800;
+}
+.tells b{color:#15161F}
+
+.share{
+  width:100%;background:#15161F;color:#fff;font-size:17px;font-weight:800;
+  padding:17px;border-radius:13px;margin-bottom:10px;
+}
+.share.wa{background:#25D366;color:#053B1C}
+.share.ghost{background:#fff;color:#15161F;border:2px solid #DDDDE7}
+.share:active{transform:scale(.985)}
+
+.namebox{background:#F5F5F9;border-radius:14px;padding:16px;margin-bottom:20px}
+.namebox label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
+.namebox input{
+  width:100%;padding:14px;border:2px solid #DDDDE7;border-radius:11px;
+  font-size:16px;font-family:inherit;background:#fff;color:#15161F;
+}
+.namebox input:focus{outline:none;border-color:#15161F}
+.linkout{
+  margin-top:11px;background:#15161F;color:#8FE3AC;padding:12px;border-radius:10px;
+  font-size:11.5px;word-break:break-all;font-family:ui-monospace,monospace;line-height:1.6;
+}
+.foot{text-align:center;font-size:12px;color:#8A8C9E;margin-top:26px;line-height:1.7}
+
+/* confetti */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:99;overflow:hidden}
+.confetti i{
+  position:absolute;width:9px;height:15px;top:-20px;opacity:.95;
+  animation:fall linear forwards;
+}
+@keyframes fall{to{transform:translateY(105vh) rotate(760deg);opacity:0}}
+
+@media (max-width:360px){
+  .headline{font-size:26px}
+  .prize .amt{font-size:40px}
+  .wheelwrap,#wheel{width:238px;height:238px}
+  .qtext{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.2s!important}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+/* =========================================================
+   THERE IS NO PAYMENT CODE IN THIS FILE.
+   No gateway SDK, no API call, no card or UPI input, no
+   server. The "Pay" button calls next() and nothing more.
+   The reveal cannot be skipped — it is the only exit.
+   ========================================================= */
+const app = document.getElementById('app');
+
+const params = new URLSearchParams(location.search);
+const PRANKSTER = (params.get('by') || '').slice(0, 24).replace(/[<>&"]/g, '');
+
+const S = { stage: 0, q: 0, correct: 0, taps: 0, seconds: 0, spun: false, method: null };
+const t0 = Date.now();
+
+const QUESTIONS = [
+  { q: 'What colour is the sky on a clear day?',
+    opts: ['Blue', 'Chicken', 'Wednesday'], right: 0,
+    yay: 'Genius! You are in the top 1%.' },
+  { q: 'How many legs does a normal dog have?',
+    opts: ['Four', 'Seventeen', 'A rectangle'], right: 0,
+    yay: 'Unbelievable! Nobody gets this one.' },
+  { q: 'Complete: 2 + 2 = ?',
+    opts: ['4', 'Fish', 'Tuesday'], right: 0,
+    yay: 'Outstanding! Expert level unlocked.' }
+];
+
+const WINNERS = [
+  'Ramesh K. from Chennai just won Rs 10,000',
+  'Priya S. from Coimbatore just won Rs 25,000',
+  'Arun M. from Madurai just won Rs 10,000',
+  'Divya R. from Salem just won Rs 50,000',
+  'Karthik V. from Trichy just won Rs 10,000',
+  'Meena T. from Erode just won Rs 25,000'
+];
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function next(){ S.stage++; render(); window.scrollTo(0,0); }
+
+/* ---------- stage 1: the landing ---------- */
+function landing(){
+  return `
+  <div class="scam">
+    <div class="tinsel"></div>
+    <div class="marquee"><span>&#11088; LIMITED OFFER &#11088; ONLY 3 WINNERS LEFT TODAY &#11088; CLAIM BEFORE TIMER ENDS &#11088; GOVERNMENT APPROVED* &#11088; 100% GUARANTEED &#11088;</span></div>
+    <div class="hero">
+      <div class="trophy">&#127942;</div>
+      <div class="headline">CONGRATULATIONS!<em>Your mobile number has been selected</em></div>
+      <div class="prize">
+        <div class="cap">YOU HAVE WON</div>
+        <div class="amt">&#8377;10,000</div>
+        <div class="cap">CASH PRIZE</div>
+      </div>
+      <div class="timer">&#9203; Offer expires in <b id="clock">04:59</b></div>
+      <div class="ticker" id="ticker"><div><span class="dot"></span>Ramesh K. from Chennai just won Rs 10,000</div></div>
+      <button class="cta" onclick="next()">CLAIM MY PRIZE NOW &#128071;</button>
+      <div class="fineprint">
+        *Not actually approved by anyone. By continuing you agree to absolutely nothing,
+        because none of this is real and no money will ever be taken from you.
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- stage 2: three very hard questions ---------- */
+function quiz(){
+  const item = QUESTIONS[S.q];
+  return `
+  <div class="scam">
+    <div class="tinsel"></div>
+    <div class="qbar">${QUESTIONS.map((_,i)=>`<i class="${i<=S.q?'on':''}"></i>`).join('')}</div>
+    <div class="panel">
+      <h2>Skill verification &mdash; question ${S.q+1} of 3</h2>
+      <p style="font-size:12px;opacity:.7">Answer correctly to keep your prize</p>
+      <div class="qtext">${item.q}</div>
+      <div id="opts">
+        ${item.opts.map((o,i)=>`<button class="opt" data-i="${i}" onclick="answer(${i})">${o}</button>`).join('')}
+      </div>
+      <div class="verdict" id="verdict"></div>
+    </div>
+    <div class="fineprint">Difficulty: EXTREME &mdash; only 3% of players reach question 3</div>
+  </div>`;
+}
+
+function answer(i){
+  const item = QUESTIONS[S.q];
+  S.taps++;
+  const btns = [...document.querySelectorAll('#opts .opt')];
+  btns.forEach(b => {
+    b.disabled = true;
+    const bi = +b.dataset.i;
+    if (bi === item.right) b.classList.add('right');
+    else if (bi === i) b.classList.add('wrong');
+  });
+  if (i === item.right) S.correct++;
+  document.getElementById('verdict').textContent = i === item.right ? item.yay : 'Close enough! We will allow it.';
+  setTimeout(() => {
+    if (S.q < QUESTIONS.length - 1) { S.q++; render(); }
+    else next();
+  }, 1100);
+}
+
+/* ---------- stage 3: the wheel ---------- */
+const SLICES = [
+  { label: '\u20B9500',    color: '#7B0F1A' },
+  { label: '\u20B910,000', color: '#F2B705' },
+  { label: 'Try again',    color: '#7B0F1A' },
+  { label: '\u20B92,000',  color: '#9E1526' },
+  { label: '\u20B910,000', color: '#F2B705' },
+  { label: '\u20B91,000',  color: '#7B0F1A' },
+  { label: 'Better luck',  color: '#9E1526' },
+  { label: '\u20B910,000', color: '#F2B705' }
+];
+
+function wheelSvg(){
+  const n = SLICES.length, step = 360 / n, R = 135;
+  let paths = '';
+  SLICES.forEach((s, i) => {
+    const a0 = (i * step - 90) * Math.PI / 180;
+    const a1 = ((i + 1) * step - 90) * Math.PI / 180;
+    const x0 = 135 + R * Math.cos(a0), y0 = 135 + R * Math.sin(a0);
+    const x1 = 135 + R * Math.cos(a1), y1 = 135 + R * Math.sin(a1);
+    paths += `<path d="M135,135 L${x0.toFixed(1)},${y0.toFixed(1)} A${R},${R} 0 0,1 ${x1.toFixed(1)},${y1.toFixed(1)} Z" fill="${s.color}"/>`;
+    const mid = (i * step + step / 2 - 90) * Math.PI / 180;
+    const tx = 135 + 88 * Math.cos(mid), ty = 135 + 88 * Math.sin(mid);
+    const rot = i * step + step / 2;
+    paths += `<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" fill="${s.color === '#F2B705' ? '#5C0A14' : '#FFD84D'}"
+      font-size="15" font-weight="800" text-anchor="middle" dominant-baseline="middle"
+      transform="rotate(${rot.toFixed(1)} ${tx.toFixed(1)} ${ty.toFixed(1)})">${s.label}</text>`;
+  });
+  return `<svg id="wheel" viewBox="0 0 270 270">${paths}</svg>`;
+}
+
+function spinStage(){
+  return `
+  <div class="scam">
+    <div class="tinsel"></div>
+    <div class="marquee"><span>&#127920; BONUS ROUND UNLOCKED &#127920; YOU EARNED ONE FREE SPIN &#127920; DOUBLE YOUR PRIZE &#127920;</span></div>
+    <div class="hero" style="padding-top:14px">
+      <div class="headline" style="font-size:24px">BONUS SPIN UNLOCKED<em>You answered all 3 correctly!</em></div>
+      <div class="wheelwrap">
+        <div class="pointer"></div>
+        ${wheelSvg()}
+        <div class="hub" id="hub">SPIN</div>
+      </div>
+      <button class="cta" id="spinbtn" onclick="doSpin()">SPIN THE WHEEL &#127919;</button>
+      <div class="fineprint">The wheel is rigged. It always lands on &#8377;10,000. That is sort of the point.</div>
+    </div>
+  </div>`;
+}
+
+function doSpin(){
+  if (S.spun) return;
+  S.spun = true; S.taps++;
+  document.getElementById('spinbtn').textContent = 'SPINNING...';
+  const w = document.getElementById('wheel');
+  // Slice 1 is a 10,000 wedge. Land the pointer in its middle, every time.
+  const step = 360 / SLICES.length;
+  const target = 360 * 6 + (360 - (1 * step + step / 2));
+  w.style.transform = `rotate(${target}deg)`;
+  setTimeout(() => {
+    document.getElementById('hub').textContent = 'WIN!';
+    document.getElementById('spinbtn').textContent = 'COLLECT \u20B910,000 \uD83D\uDCB0';
+    document.getElementById('spinbtn').onclick = next;
+  }, 4800);
+}
+
+/* ---------- stage 4: the fake checkout ----------
+   Reminder: no gateway, no SDK, no input fields, no network.
+   The button below calls next(). That is the entire logic. */
+function checkout(){
+  return `
+  <div style="min-height:100dvh;background:#F3F3F6">
+    <div class="payhdr">
+      <span class="lock">&#128274;</span>
+      <b>Secure Checkout</b>
+      <span>totally-real-payments.example</span>
+    </div>
+    <div class="paybody">
+      <div class="paycard">
+        <div class="payrow"><span>Prize amount</span><b>&#8377;10,000</b></div>
+        <div class="payrow"><span>Bonus spin winnings</span><b>&#8377;10,000</b></div>
+        <div class="payrow"><span style="color:#1FA457">Processing fee</span><b>&#8377;10</b></div>
+        <div class="payrow total"><span>Pay now to unlock</span><span>&#8377;10</span></div>
+      </div>
+
+      <p style="font-size:13px;color:#555;margin:16px 0 10px;font-weight:600">Choose payment method</p>
+      <button class="method" aria-pressed="false" onclick="pick(this)"><span class="ic">&#128241;</span> UPI &mdash; any app</button>
+      <button class="method" aria-pressed="false" onclick="pick(this)"><span class="ic">&#127974;</span> Net banking</button>
+      <button class="method" aria-pressed="false" onclick="pick(this)"><span class="ic">&#128179;</span> Debit or credit card</button>
+
+      <button class="paybtn" onclick="Pay()">Pay &#8377;10 and claim &#8377;20,000</button>
+      <div class="paynote">
+        &#128274; This page has no payment gateway attached to it.<br>
+        There is no form to fill and no money can move. Press it.
+      </div>
+    </div>
+  </div>`;
+}
+
+function pick(el) {
+
+    S.taps++;
+
+    document.querySelectorAll('.method').forEach(m =>
+        m.setAttribute('aria-pressed', 'false')
+    );
+
+    el.setAttribute('aria-pressed', 'true');
+
+    S.method = el.textContent.trim();
+}
+
+
+function Pay() {
+
+    S.taps++;
+
+    if (!S.method || !S.method.includes("UPI")) {
+        alert("Please select UPI as the payment method.");
+        return;
+    }
+
+    const upiId = "benkishore191-2@okaxis";
+    const merchantName = "AIRTEL PAYMENTS BANK LTD";
+    const amount = "10.00";
+    const transactionId = "ORDER" + Date.now();
+
+    const upiUrl =
+        "upi://pay" +
+        "?pa=" + encodeURIComponent(upiId) +
+        "&pn=" + encodeURIComponent(merchantName) +
+        "&tr=" + encodeURIComponent(transactionId) +
+        "&tn=" + encodeURIComponent("Payment of Rs 10") +
+        "&am=" + encodeURIComponent(amount) +
+        "&cu=INR";
+
+    window.location.href = upiUrl;
+}
+
+    S.taps++;
+
+    // Make sure UPI was selected
+    if (!S.method || !S.method.includes("UPI")) {
+        alert("Please select UPI as the payment method.");
+        return;
+    }
+
+    // Your UPI ID
+    const upiId = "benkishore191-2@okaxis";
+
+    // Merchant name
+    const merchantName = "AIRTEL PAYMENTS BANK LTD";
+
+    // Payment amount
+    const amount = "10.00";
+
+    // Transaction/reference ID
+    const transactionId = "ORDER" + Date.now();
+
+    // UPI payment URL
+    const upiUrl =
+        "upi://pay" +
+        "?pa=" + encodeURIComponent(upiId) +
+        "&pn=" + encodeURIComponent(merchantName) +
+        "&tr=" + encodeURIComponent(transactionId) +
+        "&tn=" + encodeURIComponent("Payment of Rs 10") +
+        "&am=" + encodeURIComponent(amount) +
+        "&cu=INR";
+
+    // Open UPI app
+    window.location.href = upiUrl;
+}
+
+/* ---------- stage 5: processing ---------- */
+const PROC = [
+  'Contacting your bank...',
+  'Verifying prize eligibility...',
+  'Consulting the prize committee...',
+  'Committee is on a tea break...',
+  'Counting your money very slowly...',
+  'Almost there...'
+];
+
+function processing(){
+  return `
+  <div class="scam">
+    <div class="proc">
+      <div>
+        <div class="ring"></div>
+        <div class="procmsg" id="pmsg">${PROC[0]}</div>
+        <div style="font-size:12px;opacity:.5;margin-top:12px">Do not close this page</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- stage 6: the reveal ---------- */
+function reveal(){
+  const secs = Math.round((Date.now() - t0) / 1000);
+  const mm = Math.floor(secs / 60), ss = secs % 60;
+  const timeStr = mm ? `${mm}m ${ss}s` : `${ss}s`;
+  const who = PRANKSTER ? `<b>${esc(PRANKSTER)}</b>` : 'a friend';
+
+  return `
+  <div class="reveal">
+    <div class="big">&#129323;</div>
+    <h1>You just got pranked</h1>
+    <p class="sub">${who} sent you this. You were <b>${timeStr}</b> away from handing &#8377;10 to a stranger on the internet.</p>
+
+    <div class="safe">
+      <div class="t">&#128274; Nothing was charged</div>
+      <div class="d">This page has no payment gateway, no form and no server. It literally cannot take money. Your bank account never knew you were here.</div>
+    </div>
+
+    <div class="scorecard">
+      <div class="sr"><span>Time spent chasing &#8377;20,000</span><b>${timeStr}</b></div>
+      <div class="sr"><span>Buttons tapped</span><b>${S.taps}</b></div>
+      <div class="sr"><span>Impossible questions solved</span><b>${S.correct} of 3</b></div>
+      <div class="sr"><span>Rigged wheels spun</span><b>${S.spun ? 1 : 0}</b></div>
+      <div class="sr"><span>Money actually taken</span><b class="g">&#8377;0.00</b></div>
+    </div>
+
+    <h3>Five things that should have given it away</h3>
+    <ul class="tells">
+      <li><span class="n">1</span><div><b>You never entered a competition.</b> Nobody selects your number at random and gives you money. That is not a thing that happens.</div></li>
+      <li><span class="n">2</span><div><b>The countdown timer.</b> Urgency exists to stop you thinking. A real prize does not expire in four minutes.</div></li>
+      <li><span class="n">3</span><div><b>The questions were free wins.</b> "What colour is the sky" is not a skill test. It is there to make you feel you earned something.</div></li>
+      <li><span class="n">4</span><div><b>You were asked to pay to get paid.</b> This is the whole scam, every time. If money has to go out before money comes in, it is a scam. No exceptions.</div></li>
+      <li><span class="n">5</span><div><b>The winner ticker was fake.</b> Six names on a loop. Ramesh from Chennai has been winning &#8377;10,000 every eleven seconds all day.</div></li>
+    </ul>
+
+    <h3>Get someone back</h3>
+    <div class="namebox">
+      <label for="nm">Your name (so they know who to blame)</label>
+      <input id="nm" maxlength="24" placeholder="e.g. Aarav" oninput="mkLink()" autocomplete="off">
+      <div class="linkout" id="lnk">Type your name to build your link</div>
+    </div>
+
+    <button class="share wa" onclick="shareWA()">Send on WhatsApp</button>
+    <button class="share ghost" onclick="copyLink()" id="cp">Copy the link</button>
+    <button class="share" onclick="location.href=location.pathname">Play it again</button>
+
+    <div class="foot">
+      No data collected. No cookies. No server. Nothing was charged, and nothing can be.<br><br>
+      If a page like this ever <em>does</em> ask for money &mdash; close it.<br>
+      Report financial fraud in India on <b>1930</b> or at <b>cybercrime.gov.in</b>.
+    </div>
+  </div>`;
+}
+
+function linkFor(name){
+  const base = location.origin && location.origin !== 'null'
+    ? location.origin + location.pathname
+    : 'yourpage.html';
+  return name ? `${base}?by=${encodeURIComponent(name)}` : base;
+}
+function mkLink(){
+  const n = document.getElementById('nm').value.trim();
+  document.getElementById('lnk').textContent = n ? linkFor(n) : 'Type your name to build your link';
+}
+function shareText(){
+  const n = (document.getElementById('nm') || {}).value?.trim() || '';
+  return `\uD83C\uDF89 I just won \u20B910,000! Check if your number was selected too: ${linkFor(n)}`;
+}
+function shareWA(){
+  window.open('https://wa.me/?text=' + encodeURIComponent(shareText()), '_blank');
+}
+function copyLink(){
+  const n = (document.getElementById('nm') || {}).value?.trim() || '';
+  const txt = linkFor(n);
+  const done = () => { const b = document.getElementById('cp'); b.textContent = 'Copied \u2713'; setTimeout(()=>b.textContent='Copy the link', 1800); };
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(txt).then(done).catch(fallback);
+  else fallback();
+  function fallback(){
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e){ prompt('Copy this link:', txt); }
+    ta.remove();
+  }
+}
+
+/* ---------- confetti ---------- */
+function confetti(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const wrap = document.createElement('div');
+  wrap.className = 'confetti';
+  const cols = ['#F2B705','#E8342F','#3CD07A','#4B7BEC','#FF6BAA','#FFD84D'];
+  for (let i = 0; i < 70; i++){
+    const s = document.createElement('i');
+    s.style.left = Math.random() * 100 + '%';
+    s.style.background = cols[i % cols.length];
+    s.style.animationDuration = (1.8 + Math.random() * 1.6) + 's';
+    s.style.animationDelay = (Math.random() * 0.5) + 's';
+    s.style.transform = `rotate(${Math.random()*360}deg)`;
+    wrap.appendChild(s);
+  }
+  document.body.appendChild(wrap);
+  setTimeout(() => wrap.remove(), 4200);
+}
+
+/* ---------- router ---------- */
+const STAGES = [landing, quiz, spinStage, checkout, processing, reveal];
+
+function render(){
+  app.innerHTML = STAGES[Math.min(S.stage, STAGES.length - 1)]();
+
+  if (S.stage === 0) { startClock(); startTicker(); }
+  if (S.stage === 4) runProcessing();
+  if (S.stage === 5) confetti();
+}
+
+function startClock(){
+  let left = 299;
+  clearInterval(window._ck);
+  window._ck = setInterval(() => {
+    const el = document.getElementById('clock');
+    if (!el) return clearInterval(window._ck);
+    left = left > 0 ? left - 1 : 299;   // it never actually expires
+    el.textContent = String(Math.floor(left/60)).padStart(2,'0') + ':' + String(left%60).padStart(2,'0');
+  }, 1000);
+}
+
+function startTicker(){
+  let i = 0;
+  clearInterval(window._tk);
+  window._tk = setInterval(() => {
+    const el = document.getElementById('ticker');
+    if (!el) return clearInterval(window._tk);
+    i = (i + 1) % WINNERS.length;
+    el.innerHTML = `<div><span class="dot"></span>${WINNERS[i]}</div>`;
+  }, 2600);
+}
+
+function runProcessing(){
+  let i = 0;
+  const step = () => {
+    const el = document.getElementById('pmsg');
+    if (!el) return;
+    el.textContent = PROC[i];
+    i++;
+    if (i < PROC.length) setTimeout(step, 750);
+    else setTimeout(next, 900);
+  };
+  setTimeout(step, 500);
+}
+
+render();
+</script>
+</body>
+</html>
